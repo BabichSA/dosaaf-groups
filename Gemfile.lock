@@ -270,6 +270,8 @@ GEM
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
     tilt (2.0.8)
+    trix (0.10.1)
+      rails
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -340,6 +342,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  trix
   turbolinks (~> 5)
   twitter-bootstrap-rails
   tzinfo-data
