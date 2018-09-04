@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_063658) do
+ActiveRecord::Schema.define(version: 2018_09_04_085454) do
+
+  create_table "group_apps", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.boolean "available", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "group_link"
+    t.index ["available"], name: "index_group_apps_on_available"
+    t.index ["name"], name: "index_group_apps_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

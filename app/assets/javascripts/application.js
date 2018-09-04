@@ -24,4 +24,6 @@
 //= require twitter/bootstrap/button
 //= require twitter/bootstrap/collapse
 
+//= require trix
+
 //= require_tree .

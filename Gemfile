@@ -46,7 +46,9 @@ gem "devise-bootstrap-views"
 gem "datetimepicker-rails", github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem "simple_form"
 
-gem "trix"
+#gem "trix", github: "maclover7/trix", branch: "master"
+gem "trix-rails", require: 'trix'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

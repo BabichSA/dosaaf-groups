@@ -5,3 +5,32 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+GroupApp.delete_all
+
+GroupApp.create!(
+  name: 'Viber',
+  body: '<h1>VIBER</h1>
+    <div><br></div>
+    <div>
+      <a href="https://www.viber.com/ru/download/">https://www.viber.com/ru/download/</a>
+    </div>'
+)
+
+GroupApp.create!(
+  name: 'WhatsApp',
+  body: '<h1>WhatsApp</h1>
+    <div><br></div>
+    <div>
+      <a href="https://www.whatsapp.com/android/?l=ru">https://www.whatsapp.com/android/?l=ru</a>
+    </div>'
+)
+
+GroupApp.create!(
+  name: 'Telegram',
+  body: '<h1>Telegram</h1>
+    <div><br></div>
+    <div>
+      <a href="https://tlgrm.ru/apps">https://tlgrm.ru/apps</a>
+    </div>'
+)

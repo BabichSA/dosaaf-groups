@@ -1,0 +1,40 @@
+ru:
+  activerecord:
+    models:
+      user: 'Пользователь'
+      group_app: 'Приложение'
+    attributes:
+      group_app:
+        name: 'Название приложения'
+        body: 'Описание'
+        group_link: 'Быстрая ссылка'
+        available: 'Отображать'
+        created_at: 'Создано в'
+        updated_at: 'Обновлено в'
+      user:
+        role_id: 'роль'
+        created_at: 'создано в'
+        updated_at: 'изменено в'
+        email: 'e-mail'
+        encrypted_password: 'зашифрованный пароль'
+        reset_password_token: 'токен сброса пароля'
+        reset_password_sent_at: 'токен выслан в'
+        remember_created_at: 'запомнить дату создания'
+        sign_in_count: 'количество входов'
+        current_sign_in_at: 'начало текущей сессии'
+        last_sign_in_at: 'конец текущей сессии'
+        current_sign_in_ip: 'текущий ip'
+        last_sign_in_ip: 'последний ip'
+        failed_attempts: 'количество ошибок входа'
+        unlock_token: 'токен разблокировки'
+        locked_at: 'заблокирован в'
+        confirmation_token: 'токен подтверждения'
+        confirmed_at: 'подтвержден в'
+        confirmation_sent_at: 'подтверждение отправлено в'
+        unconfirmed_email: 'неопдтвержденный e-mail'
+    enums:
+      user:
+        status:
+          blocked: 'заблокирован'
+          active: 'активен'
+          on_vocation: 'в отпуске'
