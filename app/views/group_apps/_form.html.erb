@@ -1,12 +1,12 @@
 <%= simple_form_for @group_app, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <%= f.error_span :name %>
   <%= f.input :body, as: :trix_editor %>
-  <%= f.error_span :body %>
   <%= f.input :group_link %>
-  <%= f.error_span :group_link %>
+  <%= f.input :fa_icon %>
   <%= f.input :available %>
-  <%= f.error_span :available %>
+
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

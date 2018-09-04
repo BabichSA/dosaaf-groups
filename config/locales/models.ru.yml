@@ -9,6 +9,7 @@ ru:
         body: 'Описание'
         group_link: 'Быстрая ссылка'
         available: 'Отображать'
+        fa_icon: 'Иконка из библиотеки FontAwesome'
         created_at: 'Создано в'
         updated_at: 'Обновлено в'
       user:

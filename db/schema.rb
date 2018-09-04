@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_09_04_085454) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "group_link"
+    t.string "fa_icon"
     t.index ["available"], name: "index_group_apps_on_available"
     t.index ["name"], name: "index_group_apps_on_name", unique: true
   end

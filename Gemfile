@@ -41,14 +41,14 @@ gem "devise"
 gem "devise-i18n"
 gem "cancancan"
 gem "russian"
-gem "twitter-bootstrap-rails"
+gem 'bootstrap', '~> 4.1.3'
+
 gem "devise-bootstrap-views"
+gem "font-awesome-sass", "~> 5.3.1"
 gem "datetimepicker-rails", github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem "simple_form"
 
-#gem "trix", github: "maclover7/trix", branch: "master"
 gem "trix-rails", require: 'trix'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

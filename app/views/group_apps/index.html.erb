@@ -1,44 +1,34 @@
-<%- model_class = GroupApp -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<div class="p-3 p-md-5">
+  <h1 class="display-4">Доступные группы</h1>
+  <hr>
+  <div class="row">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <% @group_apps_available.each do |group_app| %>
+          <%= link_to "#{get_icon group_app} #{group_app.name}".html_safe, 
+            "#v-pills-#{group_app.id}",
+            id: "v-pills-#{group_app.id}-tab",
+            class: 'nav-link',
+            role: "tab",
+            "aria-controls": "v-pills-#{group_app.id}",
+            "aria-selected": false,
+            "data-toggle": "pill"
+          %>
+        <% end %>  
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
+        <% @group_apps_available.each do |group_app| %>
+          <%= content_tag(:div,
+            group_app.body.html_safe,
+            role: "tabpanel",
+            id: "v-pills-#{group_app.id}",
+            class: "tab-pane fade",
+            "aria-labelledby": "v-pills-#{group_app.id}-tab") %>
+        <% end %> 
+      </div>
+    </div>
+  </div>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:body) %></th>
-      <th><%= model_class.human_attribute_name(:group_link) %></th>
-      <th><%= model_class.human_attribute_name(:available) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @group_apps.each do |group_app| %>
-      <tr>
-        <td><%= link_to group_app.id, group_app_path(group_app) %></td>
-        <td><%= group_app.name %></td>
-        <td><%= group_app.body %></td>
-        <td><%= group_app.group_link %></td>
-        <td><%= group_app.available %></td>
-        <td><%=l group_app.created_at %></td>
-        <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      group_app_path(group_app), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_group_app_path(group_app), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      group_app_path(group_app),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_group_app_path,
-            :class => 'btn btn-primary' %>

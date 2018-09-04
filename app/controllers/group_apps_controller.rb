@@ -5,11 +5,14 @@ class GroupAppsController < ApplicationController
   # GET /group_apps.json
   def index
     @group_apps = GroupApp.all
+    @group_apps_available = GroupApp.where(available: true)
   end
 
   # GET /group_apps/1
   # GET /group_apps/1.json
   def show
+    @group_apps = GroupApp.all
+    @group_apps_available = GroupApp.where(available: true)
   end
 
   # GET /group_apps/new
@@ -28,7 +31,7 @@ class GroupAppsController < ApplicationController
 
     respond_to do |format|
       if @group_app.save
-        format.html { redirect_to @group_app, notice: 'Приложение добавлено.' }
+        format.html { redirect_to "/group_apps", notice: 'Приложение добавлено.' }
         format.json { render :show, status: :created, location: @group_app }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class GroupAppsController < ApplicationController
   def update
     respond_to do |format|
       if @group_app.update(group_app_params)
-        format.html { redirect_to @group_app, notice: 'Приложение обновлено.' }
+        format.html { redirect_to "/group_apps", notice: 'Приложение обновлено.' }
         format.json { render :show, status: :ok, location: @group_app }
       else
         format.html { render :edit }

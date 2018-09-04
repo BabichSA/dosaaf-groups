@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  available  :boolean          default(TRUE), not null
 #  body       :text
+#  fa_icon    :string
 #  group_link :string
 #  name       :string           not null
 #  created_at :datetime         not null

@@ -1,17 +1,13 @@
 <%- model_class = GroupApp -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= "#{get_icon @group_app} #{@group_app.name}".html_safe %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @group_app.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
-  <dd><%= @group_app.body %></dd>
+  <dd><%= @group_app.body.html_safe %></dd>
   <dt><strong><%= model_class.human_attribute_name(:group_link) %>:</strong></dt>
   <dd><%= @group_app.group_link %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:available) %>:</strong></dt>
-  <dd><%= @group_app.available %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
