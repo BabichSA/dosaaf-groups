@@ -11,5 +11,12 @@
 
   <body>
     <%= yield %>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">©2018 Sergey Babich <%= mail_to "babichsa@yandex.ru", (icon 'far', 'envelope') %></span>
+      </div>
+    </footer>
+    <div class="timeTravel" style="width:90%; height: 90vh; position: absolute; top: 0; left: 0; z-index: 99; display: none"></div>
   </body>
 </html>

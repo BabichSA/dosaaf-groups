@@ -8,29 +8,30 @@
 
 GroupApp.delete_all
 
-GroupApp.create!(
-  name: 'Viber',
+GroupApp.create! [
+  { name: 'Контакты',
+  body: '
+    <div>Преподаватель: 8-990-999-99-999</div>',
+  fa_icon: 'fas phone-square' },
+
+  { name: 'Viber',
   body: '
     <div> Скачать приложение можно здесь:
       <a href="https://www.viber.com/ru/download/">https://www.viber.com/ru/download/</a>
     </div>',
-  fa_icon: 'fab viber'
-)
+  fa_icon: 'fab viber' },
 
-GroupApp.create!(
-  name: 'WhatsApp',
+  { name: 'WhatsApp',
   body: '
     <div>Скачать приложение можно здесь: 
       <a href="https://www.whatsapp.com/android/?l=ru">https://www.whatsapp.com/android/?l=ru</a>
     </div>',
-  fa_icon: 'fab whatsapp'
-)
+  fa_icon: 'fab whatsapp' },
 
-GroupApp.create!(
-  name: 'Telegram',
+  { name: 'Telegram',
   body: '
     <div>Скачать приложение можно здесь: 
       <a href="https://tlgrm.ru/apps">https://tlgrm.ru/apps</a>
     </div>',
-  fa_icon: 'fab telegram-plane'
-)
+  fa_icon: 'fab telegram-plane' }
+]

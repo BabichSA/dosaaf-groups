@@ -1,6 +1,6 @@
 <%= simple_form_for @group_app, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <%= f.input :body, as: :trix_editor %>
+  <%= f.trix_editor :body %>
   <%= f.input :group_link %>
   <%= f.input :fa_icon %>
   <%= f.input :available %>

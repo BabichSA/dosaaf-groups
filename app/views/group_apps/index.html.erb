@@ -20,13 +20,19 @@
     <div class="col-9">
       <div class="tab-content" id="v-pills-tabContent">
         <% @group_apps_available.each do |group_app| %>
-          <%= content_tag(:div,
-            group_app.body.html_safe,
+          <%= content_tag :div,
             role: "tabpanel",
             id: "v-pills-#{group_app.id}",
             class: "tab-pane fade",
-            "aria-labelledby": "v-pills-#{group_app.id}-tab") %>
-        <% end %> 
+            "aria-labelledby": "v-pills-#{group_app.id}-tab" do 
+              concat group_app.body.html_safe
+              unless group_app.group_link.nil? || group_app.group_link.empty?
+                concat content_tag :p, 
+                  "<hr><b>Ссылка для подключения:</b> #{link_to group_app.group_link, group_app.group_link}".html_safe
+              end
+            end
+          %>
+        <% end %>
       </div>
     </div>
   </div>
