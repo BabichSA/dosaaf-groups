@@ -1,0 +1,53 @@
+<%- model_class = User -%>
+<div class="p-3 p-md-5">
+  <div class="page-header">
+  </div>
+
+
+  <div class="row">
+    <div class="col-10">
+      <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+    </div>
+    <div class="col-2">
+      <p><%= link_to("Выйти #{ icon 'fas', 'sign-out-alt' }".html_safe, destroy_user_session_path, method: :delete) %></p>  
+      <p><%= link_to("Доступные группы #{ icon 'fas', 'comments' }".html_safe, group_apps_path) %></p>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:id) %></th>
+        <th><%= model_class.human_attribute_name(:email) %></th>
+        <th><%= model_class.human_attribute_name(:username) %></th>
+        <th><%= model_class.human_attribute_name(:role) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.id, user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= user.username %></td>
+          <td><%= user.role %></td>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_user_path(user), :class => 'btn btn-default btn-xs' %>
+            <%= link_to 'Сменить пароль',
+                        change_password_user_path(user), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        user_path(user),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_user_path,
+              :class => 'btn btn-primary' %>
+</div>

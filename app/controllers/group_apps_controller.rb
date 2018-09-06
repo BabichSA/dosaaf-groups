@@ -4,29 +4,34 @@ class GroupAppsController < ApplicationController
   # GET /group_apps
   # GET /group_apps.json
   def index
+    authorize! :read, GroupApp
     @group_apps = GroupApp.all
     @group_apps_available = GroupApp.where(available: true)
   end
 
   # GET /group_apps/1
   # GET /group_apps/1.json
-  def show
-    @group_apps = GroupApp.all
-    @group_apps_available = GroupApp.where(available: true)
-  end
+  # def show
+  #   authorize! :read, GroupApp
+  #   @group_apps = GroupApp.all
+  #   @group_apps_available = GroupApp.where(available: true)
+  # end
 
   # GET /group_apps/new
   def new
+    authorize! :create, GroupApp
     @group_app = GroupApp.new
   end
 
   # GET /group_apps/1/edit
   def edit
+    authorize! :edit, @group_app
   end
 
   # POST /group_apps
   # POST /group_apps.json
   def create
+    authorize! :create, GroupApp
     @group_app = GroupApp.new(group_app_params)
 
     respond_to do |format|
@@ -43,6 +48,7 @@ class GroupAppsController < ApplicationController
   # PATCH/PUT /group_apps/1
   # PATCH/PUT /group_apps/1.json
   def update
+    authorize! :update, @group_app
     respond_to do |format|
       if @group_app.update(group_app_params)
         format.html { redirect_to "/group_apps", notice: 'Приложение обновлено.' }
@@ -57,6 +63,7 @@ class GroupAppsController < ApplicationController
   # DELETE /group_apps/1
   # DELETE /group_apps/1.json
   def destroy
+    authorize! :destroy, @group_app
     @group_app.destroy
     respond_to do |format|
       format.html { redirect_to group_apps_url, notice: 'Приложение удалено.' }

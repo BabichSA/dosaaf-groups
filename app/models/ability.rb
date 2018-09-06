@@ -28,5 +28,16 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+
+    cannot :read, :user_controller
+
+    can :read, GroupApp
+    
+    if user.admin?
+      can :manage, GroupApp
+      can :manage, User
+      can :change_password, User
+      can :update_password, User
+    end
   end
 end

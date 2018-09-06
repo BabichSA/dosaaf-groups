@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DosaafGroups</title>
+    <title>Группы ДОСААФ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,11 +11,18 @@
 
   <body>
     <%= yield %>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %> text-center">
+        <%= value %>
+      </div>
+    <% end %>
 
     <footer class="footer">
-      <div class="container">
-        <span class="text-muted">©2018 Sergey Babich <%= mail_to "babichsa@yandex.ru", (icon 'far', 'envelope') %></span>
-      </div>
+      <% unless devise_controller? %>
+        <div class="container">
+          <span class="text-muted">©2018 Sergey Babich <%= mail_to "babichsa@yandex.ru", (icon 'far', 'envelope') %></span>
+        </div>
+      <% end %>
     </footer>
     <div class="timeTravel" style="width:90%; height: 90vh; position: absolute; top: 0; left: 0; z-index: 99; display: none"></div>
   </body>
