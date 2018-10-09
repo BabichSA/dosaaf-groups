@@ -40,12 +40,15 @@ gem "devise"
 gem "devise-i18n"
 gem "cancancan"
 gem "russian"
-gem 'bootstrap', '~> 4.1.3'
+gem "bootstrap", "~> 4.1.3"
+gem "momentjs-rails"
+gem "bootstrap4-datetime-picker-rails"
 
 gem "devise-bootstrap-views"
 gem "font-awesome-sass", "~> 5.3.1"
 gem "datetimepicker-rails", github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem "simple_form"
+gem "enum_help"
 
 gem "trix-rails", require: 'trix'
 
@@ -55,6 +58,9 @@ group :development, :test do
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+
+  gem "faker"
+  gem "faker-russian"
 end
 
 group :development do

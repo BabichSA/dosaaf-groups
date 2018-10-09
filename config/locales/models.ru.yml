@@ -1,41 +1,74 @@
 ru:
   activerecord:
     models:
-      user: 'Пользователь'
-      group_app: 'Приложение'
+      user: "Пользователь"
+      group_app: "Приложение"
+      student: "Учащийся"
+      instructor: "Инструктор"
+      driving: "Вождение"
     attributes:
       group_app:
-        name: 'Название приложения'
-        body: 'Описание'
-        group_link: 'Быстрая ссылка'
-        available: 'Отображать'
-        fa_icon: 'Иконка из библиотеки FontAwesome'
-        created_at: 'Создано в'
-        updated_at: 'Обновлено в'
+        name: "Название приложения"
+        body: "Описание"
+        group_link: "Быстрая ссылка"
+        available: "Отображать"
+        fa_icon: "Иконка из библиотеки FontAwesome"
+        created_at: "Создано в"
+        updated_at: "Обновлено в"
       user:
-        role: 'Pоль'
-        username: 'Логин'
-        created_at: 'Cоздано в'
-        updated_at: 'Bзменено в'
-        email: 'E-mail'
-        encrypted_password: 'Зашифрованный пароль'
-        reset_password_token: 'Токен сброса пароля'
-        reset_password_sent_at: 'Токен выслан в'
-        remember_created_at: 'Запомнить дату создания'
-        sign_in_count: 'Количество входов'
-        current_sign_in_at: 'Начало текущей сессии'
-        last_sign_in_at: 'Конец текущей сессии'
-        current_sign_in_ip: 'Текущий ip'
-        last_sign_in_ip: 'Последний ip'
-        failed_attempts: 'Количество ошибок входа'
-        unlock_token: 'Токен разблокировки'
-        locked_at: 'Заблокирован в'
-        confirmation_token: 'Токен подтверждения'
-        confirmed_at: 'Подтвержден в'
-        confirmation_sent_at: 'Подтверждение отправлено в'
-        unconfirmed_email: 'Неопдтвержденный e-mail'
-    enums:
-      user:
-        role:
-          admin: 'Администратор'
-          guest: 'Гость'
+        role: "Pоль"
+        username: "Логин"
+        created_at: "Cоздано в"
+        updated_at: "Bзменено в"
+        email: "E-mail"
+        encrypted_password: "Зашифрованный пароль"
+        reset_password_token: "Токен сброса пароля"
+        reset_password_sent_at: "Токен выслан в"
+        remember_created_at: "Запомнить дату создания"
+        sign_in_count: "Количество входов"
+        current_sign_in_at: "Начало текущей сессии"
+        last_sign_in_at: "Конец текущей сессии"
+        current_sign_in_ip: "Текущий ip"
+        last_sign_in_ip: "Последний ip"
+        failed_attempts: "Количество ошибок входа"
+        unlock_token: "Токен разблокировки"
+        locked_at: "Заблокирован в"
+        confirmation_token: "Токен подтверждения"
+        confirmed_at: "Подтвержден в"
+        confirmation_sent_at: "Подтверждение отправлено в"
+        unconfirmed_email: "Неопдтвержденный e-mail"
+      student:
+        full_name: "ФИО"
+        phone: "Телефон"
+        address: "Адрес"
+        work: "Место работы/обучения"
+        grade: "Образование"
+        driving_hours: "Часов вождения"
+        created_at: "Создан в"
+        updated_at: "Обновлен в"
+      instructor:
+        full_name: "ФИО"
+        phone: "Телефон"
+        created_at: "Создан в"
+        updated_at: "Обновлен в"
+      driving:
+        instructor_id: "Инструктор"
+        student_id: "Учащийся"
+        start_date: "Дата начала вождения"
+        created_at: "Создан в"
+        updated_at: "Обновлен в"
+  enums:
+    user:
+      role:
+        admin: "Администратор"
+        guest: "Гость"
+        headman: "Староста"
+    student:
+      grade:
+        not_set: "не указано"
+        school9: "среднее"
+        school11: "полное среднее"
+        college: "колледж/техникум"
+        baccalaureate: "университет(бакалавр)"
+        university: "университет(специалист)"
+        magistracy: "университет(магистр)"

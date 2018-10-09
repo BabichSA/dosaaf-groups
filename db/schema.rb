@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_110840) do
+ActiveRecord::Schema.define(version: 2018_10_09_091249) do
+
+  create_table "drivings", force: :cascade do |t|
+    t.integer "instructor_id", null: false
+    t.integer "student_id", null: false
+    t.datetime "start_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instructor_id", "student_id", "start_date"], name: "index_drivings_on_instructor_id_and_student_id_and_start_date", unique: true
+    t.index ["instructor_id"], name: "index_drivings_on_instructor_id"
+    t.index ["student_id"], name: "index_drivings_on_student_id"
+  end
 
   create_table "group_apps", force: :cascade do |t|
     t.string "name", null: false
@@ -22,6 +33,26 @@ ActiveRecord::Schema.define(version: 2018_09_05_110840) do
     t.string "fa_icon"
     t.index ["available"], name: "index_group_apps_on_available"
     t.index ["name"], name: "index_group_apps_on_name", unique: true
+  end
+
+  create_table "instructors", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["full_name"], name: "index_instructors_on_full_name"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "phone"
+    t.string "address"
+    t.string "work"
+    t.integer "grade", default: 0
+    t.integer "driving_hours", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["full_name"], name: "index_students_on_full_name"
   end
 
   create_table "users", force: :cascade do |t|

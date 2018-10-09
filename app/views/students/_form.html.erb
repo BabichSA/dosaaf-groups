@@ -1,0 +1,22 @@
+
+<%= simple_form_for @student, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :full_name %>
+  <%= f.input :phone %>
+  <%= f.input :address %>
+  <%= f.input :work %>
+
+  <%= f.input :grade, as: :select,
+        collection: Student.grades.map {|k, v| [t("enums.student.grade.#{k}"), k]},
+        include_blank: false,
+        selected: @student.grade %>
+
+  <%= f.input :driving_hours %>
+
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                students_path, :class => 'btn btn-default' %>
+<% end %>
+

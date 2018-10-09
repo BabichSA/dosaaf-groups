@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    # authorize! :read, User
+    authorize! :read, User
     @users = User.all
   end
 
@@ -35,10 +35,10 @@ class UsersController < ApplicationController
   def create_manual
     authorize! :create, User
     @user = User.new(user_params)
-    
+
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, 'Пользователь создан.' }
+        format.html { redirect_to @user, 'Пользователь создан' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_path, notice: 'Пользователь обновлен.' }
+        format.html { redirect_to users_path, notice: 'Пользователь обновлен' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_path, notice: 'Пароль изменен.' }
+        format.html { redirect_to users_path, notice: 'Пароль изменен' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :change_password }
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     authorize! :destroy, @user
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Пользователь удален.' }
+      format.html { redirect_to users_url, notice: 'Пользователь удален' }
       format.json { head :no_content }
     end
   end

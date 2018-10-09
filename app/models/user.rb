@@ -8,7 +8,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default(0), not null
+#  role                   :integer          default("guest"), not null
 #  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -35,7 +35,8 @@ class User < ApplicationRecord
 
   enum role: {
     guest: 0,
-    admin: 1
+    admin: 1,
+    headman: 2
   }
 
   def self.find_for_database_authentication(warden_conditions)

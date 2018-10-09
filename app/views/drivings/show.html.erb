@@ -1,0 +1,31 @@
+<%- model_class = Driving -%>
+<div class="p-3 p-md-5">
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  </div>
+
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:instructor_id) %>:</strong></dt>
+    <dd><%= link_to @driving.instructor_full_name, 
+            instructor_path(@driving.instructor_id), target: "_blank" %>
+    </dd>
+    <dt><strong><%= model_class.human_attribute_name(:student_id) %>:</strong></dt>
+    <dd><%= link_to @driving.student_full_name, 
+            student_path(@driving.student_id), target: "_blank" %>
+    </dd>
+    <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
+    <dd><%= @driving.start_date %></dd>
+  </dl>
+
+  <p id="notice"><%= notice %></p>
+
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                drivings_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_driving_path(@driving), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                driving_path(@driving),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+</div>

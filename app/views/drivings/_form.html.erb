@@ -1,0 +1,14 @@
+
+<%= simple_form_for(@driving) do |f| %>
+  <%= f.input :instructor_id, collection: Instructor.full_names, include_blank: false, selected: @driving.instructor_id %>
+  <%= f.input :student_id, collection: Student.full_names, include_blank: false, selected: @driving.student_id %>
+
+  <%= f.input :start_date, as: :tempus_dominus %>
+
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                drivings_path, :class => 'btn btn-default' %>
+<% end %>

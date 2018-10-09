@@ -32,9 +32,20 @@ class Ability
     cannot :read, :user_controller
 
     can :read, GroupApp
-    
+    can :read, Driving
+
+    if user.headman?
+      can :read, GroupApp
+      can :read, Student
+      can :read, Instructor
+      can :manage, Driving
+    end
+
     if user.admin?
       can :manage, GroupApp
+      can :manage, Student
+      can :manage, Instructor
+      can :manage, Driving
       can :manage, User
       can :change_password, User
       can :update_password, User
