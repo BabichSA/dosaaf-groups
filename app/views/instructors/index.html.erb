@@ -1,19 +1,7 @@
 <%- model_class = Instructor -%>
 
-<div class="p-3 p-md-5">
-  <div class="page-header">
-  </div>
-
-  <div class="row">
-    <div class="col-10">
-      <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-    </div>
-    <div class="col-2">
-      <p><%= link_to("Выйти #{ icon 'fas', 'sign-out-alt' }".html_safe, destroy_user_session_path, method: :delete) %></p>  
-      <p><%= link_to("Доступные группы #{ icon 'fas', 'comments' }".html_safe, group_apps_path) %></p>
-    </div>
-  </div>
-
+<div class="container">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
   <table class="table table-striped">
     <thead>
       <tr>

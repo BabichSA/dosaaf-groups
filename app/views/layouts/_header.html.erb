@@ -1,0 +1,38 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to("ДОСААФ", '/',   class: "navbar-brand") %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <div class="navbar-nav float-left text-left pr-3 ">
+        <%= link_to("#{ icon 'fas', 'mobile-alt' } Группы в мессенжерах".html_safe, 
+          group_apps_path, 
+          class: (
+            controller.controller_name == 'group_apps' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, GroupApp %>
+        <%= link_to("#{ icon 'fas', 'user-graduate' } Учащиеся".html_safe, 
+          students_path, 
+          class: (
+            controller.controller_name == 'students' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, Student %>
+        <%= link_to("#{ icon 'fas', 'user-tie' } Инструкторы".html_safe, 
+          instructors_path, 
+          class: (
+            controller.controller_name == 'instructors' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, Instructor %>
+        <%= link_to("#{ icon 'fas', 'car' } Запись на вождение".html_safe, 
+          drivings_path,
+          class: (
+            controller.controller_name == 'drivings' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, Driving %>
+        <%= link_to("#{ icon 'fas', 'users' } Управление пользователями".html_safe, 
+          users_path, class: (
+            controller.controller_name == 'users' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, User %>
+        <%= link_to("#{ icon 'fas', 'sign-out-alt' } Выйти".html_safe, 
+          destroy_user_session_path, method: :delete, class: "nav-item nav-link") %>
+      </div>
+    </div>
+  </nav>
+</header>

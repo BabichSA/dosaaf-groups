@@ -10,20 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %> text-center">
-        <%= value %>
-      </div>
+    <% unless devise_controller? %>
+      <%= render 'layouts/header' %>
     <% end %>
 
-    <footer class="footer">
-      <% unless devise_controller? %>
-        <div class="container">
-          <span class="text-muted">©2018 Sergey Babich <%= mail_to "babichsa@yandex.ru", (icon 'far', 'envelope') %></span>
+    <main role="main">
+      <%= yield %>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> text-center">
+          <%= value %>
         </div>
       <% end %>
-    </footer>
-    <div class="timeTravel" style="width:90%; height: 90vh; position: absolute; top: 0; left: 0; z-index: 99; display: none"></div>
+    </main>
+
+    <% unless devise_controller? %>
+      <%= render 'layouts/footer' %>
+    <% end %>
   </body>
 </html>

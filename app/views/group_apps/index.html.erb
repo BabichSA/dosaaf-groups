@@ -1,23 +1,24 @@
-<div class="p-3 p-md-5">
-  <div class="row">
-    <div class="col-8">
-      <h1 class="display-2">Доступные группы</h1>
-    </div>
-    <div class="col-4">
-      <p><%= link_to("Выйти #{ icon 'fas', 'sign-out-alt' }".html_safe, destroy_user_session_path, method: :delete) %></p>  
-      <p><%= link_to("Управление пользователями #{ icon 'fas', 'users' }".html_safe, users_path) if can? :read, User %></p>
-      <p><%= link_to("Учащиеся #{ icon 'fas', 'users' }".html_safe, students_path) if can? :read, Student %></p>
-      <p><%= link_to("Водители #{ icon 'fas', 'users' }".html_safe, instructors_path) if can? :read, Instructor %></p>
-      <p><%= link_to("Вождение #{ icon 'fas', 'users' }".html_safe, drivings_path) if can? :read, Driving %></p>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-3">
-      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <% @group_apps.each do |group_app| %>
-          <% if group_app.available %>
-            <%= link_to "#{get_icon group_app} #{group_app.name}".html_safe, 
+<%- model_class = GroupApp -%>
+<div class="container">
+  <h1>Группы в мессенджерах</h1>
+  <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+    <% @group_apps.each do |group_app| %>
+      <% if group_app.available %>
+        <li class="nav-item">
+          <%= link_to "#{get_icon group_app} #{group_app.name}".html_safe, 
+            "#v-pills-#{group_app.id}",
+            id: "v-pills-#{group_app.id}-tab",
+            class: 'nav-link',
+            role: "tab",
+            "aria-controls": "v-pills-#{group_app.id}",
+            "aria-selected": false,
+            "data-toggle": "pill"
+          %>
+        </li>
+      <% else %>
+        <% if can? :manage, GroupApp %>
+          <li class="nav-item">
+            <%= link_to "#{get_icon group_app} #{group_app.name} (отключено)".html_safe, 
               "#v-pills-#{group_app.id}",
               id: "v-pills-#{group_app.id}-tab",
               class: 'nav-link',
@@ -26,48 +27,34 @@
               "aria-selected": false,
               "data-toggle": "pill"
             %>
-          <% else %>
-            <% if can? :manage, GroupApp %>
-              <%= link_to "#{get_icon group_app} #{group_app.name} (отключено)".html_safe, 
-                "#v-pills-#{group_app.id}",
-                id: "v-pills-#{group_app.id}-tab",
-                class: 'nav-link',
-                role: "tab",
-                "aria-controls": "v-pills-#{group_app.id}",
-                "aria-selected": false,
-                "data-toggle": "pill"
-              %>
-            <% end %>
-          <% end %>
-        <% end %>  
-      </div>
-    </div>
-    <div class="col-9">
-      <div class="tab-content" id="v-pills-tabContent">
-        <% @group_apps.each do |group_app| %>
-          <% if group_app.available || (can? :manage, GroupApp) %>
-            <%= content_tag :div,
-              role: "tabpanel",
-              id: "v-pills-#{group_app.id}",
-              class: "tab-pane fade",
-              "aria-labelledby": "v-pills-#{group_app.id}-tab" do 
-                concat group_app.body.html_safe
-                unless group_app.group_link.nil? || group_app.group_link.empty?
-                  concat content_tag :p, 
-                    "<hr><b>Ссылка для подключения:</b> #{link_to group_app.group_link, group_app.group_link}".html_safe
-                end
-                if current_user.admin?
-                  concat content_tag :p,
-                  "<hr>#{ link_to ('Редактировать ' + icon('fas', 'edit')).html_safe, edit_group_app_path(group_app) }".html_safe
-                end
-              end
-            %>
-          <% end %>
+          </li>
         <% end %>
-      </div>
-    </div>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <% @group_apps.each do |group_app| %>
+      <% if group_app.available || (can? :manage, GroupApp) %>
+        <%= content_tag :div,
+          role: "tabpanel",
+          id: "v-pills-#{group_app.id}",
+          class: "tab-pane fade",
+          "aria-labelledby": "v-pills-#{group_app.id}-tab" do 
+            concat group_app.body.html_safe
+            unless group_app.group_link.nil? || group_app.group_link.empty?
+              concat content_tag :p, 
+                "<b>Ссылка для подключения:</b> #{link_to group_app.group_link, group_app.group_link}".html_safe
+            end
+            if current_user.admin?
+              concat content_tag :p,
+              "#{ link_to ('Редактировать ' + icon('fas', 'edit')).html_safe, edit_group_app_path(group_app) }".html_safe
+            end
+          end
+        %>
+      <% end %>
+    <% end %>
   </div>
+
   <hr>
   <%= link_to 'Добавить', new_group_app_path, class: 'btn btn-success' if can? :create, GroupApp %>
 </div>
-

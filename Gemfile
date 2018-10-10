@@ -49,6 +49,7 @@ gem "font-awesome-sass", "~> 5.3.1"
 gem "datetimepicker-rails", github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem "simple_form"
 gem "enum_help"
+gem "ransack"
 
 gem "trix-rails", require: 'trix'
 
