@@ -81,6 +81,7 @@ GEM
     bootstrap4-datetime-picker-rails (0.2.0)
       jquery-rails (~> 4.2, >= 4.2.0)
       momentjs-rails (~> 2.10, >= 2.10.5)
+    bootstrap4-select-rails (2.0.0)
     builder (3.2.3)
     byebug (10.0.2)
     cancancan (2.2.0)
@@ -259,9 +260,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sassc (1.12.1)
+    sassc (2.0.0)
       ffi (~> 1.9.6)
-      sass (>= 3.3.0)
+      rake
     selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
@@ -331,6 +332,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.3)
   bootstrap4-datetime-picker-rails
+  bootstrap4-select-rails
   byebug
   cancancan
   capybara (>= 2.15)

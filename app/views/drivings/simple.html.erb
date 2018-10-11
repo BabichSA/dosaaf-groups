@@ -1,0 +1,78 @@
+<%- model_class = Driving -%>
+<div class="container">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-3">
+        <div id="simple_driving_date"></div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group select optional simple_driving_instructor_id form-group-valid">
+          <label class="form-control-label select optional" for="simple_driving_instructor_id">Инструктор</label>
+          <select class="selectpicker" name="simple_driving[instructor_id]" id="simple_driving_instructor_id" data-width="auto">
+            <option selected value>Не выбран</option>
+            <option value="7">Денис Моисеев</option>
+            <option value="9">Шарапов Денис</option>
+            <option value="8">Шестакова Ирина Анатольевна</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group select optional driving_student_id_8_00 form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_8_00">08:00</label>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_8_00" data-width="auto">
+            <option selected value>Не выбран</option>
+            <option data-tokens="Бабич много красный">Бабич</option>
+            <option data-tokens="Извольская средне желтый">Извольская</option>
+            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+          </select>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
+          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
+          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
+        </div>
+
+        <div class="form-group select optional driving_student_id_10_00 form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_10_00">10:00</label>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_10_00" data-width="auto">
+            <option selected value>Не выбран</option>
+            <option data-tokens="Бабич много красный">Бабич</option>
+            <option data-tokens="Извольская средне желтый">Извольская</option>
+            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+          </select>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
+          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
+          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
+        </div>
+
+        <div class="form-group select optional driving_student_id_13_00 form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_13_00">13:00</label>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_13_00" data-width="auto">
+            <option selected value>Не выбран</option>
+            <option data-tokens="Бабич много красный">Бабич</option>
+            <option data-tokens="Извольская средне желтый">Извольская</option>
+            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+          </select>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
+          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
+          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
+        </div>
+
+        <div class="form-group select optional driving_student_id_15_00 form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_15_00">15:00</label>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_15_00" data-width="auto">
+            <option selected value>Не выбран</option>
+            <option data-tokens="Бабич много красный">Бабич</option>
+            <option data-tokens="Извольская средне желтый">Извольская</option>
+            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+          </select>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
+          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
+          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

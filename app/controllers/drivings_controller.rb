@@ -5,7 +5,19 @@ class DrivingsController < ApplicationController
   # GET /drivings.json
   def index
     authorize! :read, Driving
-    @drivings = Driving.all
+    
+    if params[:q].nil?
+      @q_params = {}
+    else
+      @q_params = params[:q]
+    end
+    @q = Driving.ransack(params[:q])
+    @drivings = @q.result
+  end
+
+  def simple
+    authorize! :read, Driving
+    authorize! :create, Driving
   end
 
   # GET /drivings/1

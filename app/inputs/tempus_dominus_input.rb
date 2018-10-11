@@ -12,18 +12,12 @@ class TempusDominusInput < SimpleForm::Inputs::Base
 
   def div_button
     template.content_tag(:div, class: 'input-group-append', data: {target: "##{object_name}_#{attribute_name}", toggle: 'datetimepicker'} ) do
-      template.concat span_button
+      template.concat span_table
     end
   end
 
-  def span_button
-    template.content_tag(:span, class: 'input-group-btn') do
-      template.concat calendar_button
-    end
-  end
-
-  def calendar_button
-    template.button_tag(class: 'btn btn-primary', :type => 'button') do
+  def span_table
+    template.content_tag(:div, class: 'input-group-text') do
       template.concat icon_table
     end
   end

@@ -22,7 +22,9 @@
 //= require moment
 //= require moment/ru.js
 //= require tempusdominus-bootstrap-4.js
-
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
 //= require trix
 
 //= require_tree .

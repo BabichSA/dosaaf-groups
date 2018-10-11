@@ -47,6 +47,7 @@ gem "bootstrap4-datetime-picker-rails"
 gem "devise-bootstrap-views"
 gem "font-awesome-sass", "~> 5.3.1"
 gem "datetimepicker-rails", github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem "bootstrap4-select-rails"
 gem "simple_form"
 gem "enum_help"
 gem "ransack"

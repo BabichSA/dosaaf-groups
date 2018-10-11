@@ -5,7 +5,7 @@
       <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
     </div>
     <div class="col-2">
-      <%= link_to "Удалить? #{ icon 'far', 'trash-alt' }".html_safe, 
+      <%= link_to "#{ icon 'far', 'trash-alt' } Удалить?".html_safe, 
       @group_app, 
       method: :delete, 
       data: { confirm: 'Вы уверены?' }, 
