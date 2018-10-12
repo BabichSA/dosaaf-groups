@@ -6,13 +6,17 @@ AssignFindetDrivingToForm = (drivings_json) ->
   # console.log drivings_json
   if drivings_json.length > 0
     $.each(drivings_json, (i, item) ->
-      console.log item
+      # console.log item
     )
 
 findDriving = (instuctor_id, driving_start_date, driving_end_date) ->
   # :id, :instructor_id, :student_id, :start_date, :created_at, :updated_at
   url = "/drivings.json"
 
+  # console.log $("#driving_student_id_8_00").val() console.log
+  $("#driving_student_id_8_00").val(81)
+  $("#driving_student_id_8_00").selectpicker('refresh')
+  
   $.getJSON(
     url, (
       tags: "id instructor_id student_id start_date"
