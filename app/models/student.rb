@@ -32,6 +32,58 @@ class Student < ApplicationRecord
     magistracy: 6
   }
 
+  def full_driving_hours
+    driving_hours + drivings.count * 2
+  end
+
+  def driving_group(groups = {})
+    if groups.empty?
+      groups = Student.driving_groups
+    end
+
+    if full_driving_hours > groups[:red]
+      :red
+    elsif full_driving_hours > groups[:yellow]
+      :yellow
+    else
+      :green
+    end
+  end
+
+  def driving_tags(groups = {})
+    if groups.empty?
+      groups = Student.driving_groups
+    end    
+  
+    tags = full_name
+    tag_class = ''
+
+    if full_driving_hours >= groups[:red]
+      tags += ' красный много '
+      tag_class = 'red_hours'
+    elsif full_driving_hours >= groups[:yellow]
+      tags += ' желтый средне '
+      tag_class = 'yellow_hours'
+    else
+      tags += ' зеленый мало '
+      tag_class = 'green_hours'
+    end
+    tags += full_driving_hours.to_s
+
+    { "data-tokens": tags, "data-text": "#{full_name} (#{full_driving_hours})", "class": tag_class }
+  end
+
+  def self.driving_groups
+    group_limit = self.count / 3
+    yellow_hours_starts_with = self.all.sort_by {|student| student.full_driving_hours }.reverse[group_limit * 2].full_driving_hours#.limit(2)
+    red_hours_starts_with = self.all.sort_by {|student| student.full_driving_hours }.reverse[group_limit].full_driving_hours#.limit(2)
+    
+    { green: 0, yellow: yellow_hours_starts_with, red: red_hours_starts_with }
+    # students.each do
+    # Student.all.limit(10)
+    # Student.all.order("")
+  end
+
   def self.full_names
     names = []
     self.all.each do |s|

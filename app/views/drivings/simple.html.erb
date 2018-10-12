@@ -12,22 +12,26 @@
         <div class="form-group select optional simple_driving_instructor_id form-group-valid">
           <label class="form-control-label select optional" for="simple_driving_instructor_id">Инструктор</label>
           <select class="selectpicker" name="simple_driving[instructor_id]" id="simple_driving_instructor_id" data-width="auto">
-            <option selected value>Не выбран</option>
-            <option value="7">Денис Моисеев</option>
-            <option value="9">Шарапов Денис</option>
-            <option value="8">Шестакова Ирина Анатольевна</option>
+            <option selected value="0">Не выбран</option>
+            <% @instructors.each do |instructor| %>
+              <%= content_tag( :option, instructor.full_name, value: instructor.id ) %>
+            <% end %>
           </select>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="form-group select optional driving_student_id_8_00 form-group-valid">
           <label class="form-control-label select optional" for="driving_student_id_8_00">08:00</label>
           <select class="selectpicker" data-live-search="true" id="driving_student_id_8_00" data-width="auto">
             <option selected value>Не выбран</option>
-            <option data-tokens="Бабич много красный">Бабич</option>
-            <option data-tokens="Извольская средне желтый">Извольская</option>
-            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+            <% @students.each do |student| %>
+              <% student_hours_data = student.driving_tags(@groups) %>
+              <%= content_tag( :option,
+                student_hours_data[:"data-text"],
+                value: student.id,
+                "data-tokens": student_hours_data[:"data-tokens"],
+                class: student_hours_data[:"class"] ) %>
+            <% end %>  
           </select>
           <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
           <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
@@ -38,9 +42,14 @@
           <label class="form-control-label select optional" for="driving_student_id_10_00">10:00</label>
           <select class="selectpicker" data-live-search="true" id="driving_student_id_10_00" data-width="auto">
             <option selected value>Не выбран</option>
-            <option data-tokens="Бабич много красный">Бабич</option>
-            <option data-tokens="Извольская средне желтый">Извольская</option>
-            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+            <% @students.each do |student| %>
+              <% student_hours_data = student.driving_tags(@groups) %>
+              <%= content_tag( :option,
+                student_hours_data[:"data-text"],
+                value: student.id,
+                "data-tokens": student_hours_data[:"data-tokens"],
+                class: student_hours_data[:"class"] ) %>
+            <% end %>  
           </select>
           <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
           <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
@@ -51,9 +60,14 @@
           <label class="form-control-label select optional" for="driving_student_id_13_00">13:00</label>
           <select class="selectpicker" data-live-search="true" id="driving_student_id_13_00" data-width="auto">
             <option selected value>Не выбран</option>
-            <option data-tokens="Бабич много красный">Бабич</option>
-            <option data-tokens="Извольская средне желтый">Извольская</option>
-            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+            <% @students.each do |student| %>
+              <% student_hours_data = student.driving_tags(@groups) %>
+              <%= content_tag( :option,
+                student_hours_data[:"data-text"],
+                value: student.id,
+                "data-tokens": student_hours_data[:"data-tokens"],
+                class: student_hours_data[:"class"] ) %>
+            <% end %>  
           </select>
           <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
           <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
@@ -64,9 +78,14 @@
           <label class="form-control-label select optional" for="driving_student_id_15_00">15:00</label>
           <select class="selectpicker" data-live-search="true" id="driving_student_id_15_00" data-width="auto">
             <option selected value>Не выбран</option>
-            <option data-tokens="Бабич много красный">Бабич</option>
-            <option data-tokens="Извольская средне желтый">Извольская</option>
-            <option data-tokens="Белоусова мало зеленый">Белоусова</option>
+            <% @students.each do |student| %>
+              <% student_hours_data = student.driving_tags(@groups) %>
+              <%= content_tag( :option,
+                student_hours_data[:"data-text"],
+                value: student.id,
+                "data-tokens": student_hours_data[:"data-tokens"],
+                class: student_hours_data[:"class"] ) %>
+            <% end %>  
           </select>
           <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
           <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>

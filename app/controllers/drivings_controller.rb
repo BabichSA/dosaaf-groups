@@ -18,6 +18,9 @@ class DrivingsController < ApplicationController
   def simple
     authorize! :read, Driving
     authorize! :create, Driving
+    @instructors = Instructor.all
+    @students = Student.all
+    @groups = Student.driving_groups
   end
 
   # GET /drivings/1
@@ -89,6 +92,6 @@ class DrivingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driving_params
-      params.require(:driving).permit(:instructor_id, :student_id, :start_date)
+      params.require(:driving).permit(:instructor_id, :student_id, :start_date, :q)
     end
 end

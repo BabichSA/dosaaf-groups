@@ -2,7 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-findDriving = (instuctor_id, driving_date) ->
+AssignFindetDrivingToForm = (drivings_json) ->
+  # console.log drivings_json
+  if drivings_json.length > 0
+    $.each(drivings_json, (i, item) ->
+      console.log item
+    )
+
+findDriving = (instuctor_id, driving_start_date, driving_end_date) ->
   # :id, :instructor_id, :student_id, :start_date, :created_at, :updated_at
   url = "/drivings.json"
 
@@ -12,11 +19,16 @@ findDriving = (instuctor_id, driving_date) ->
       tagmode: "any"
       format: "json"
       q: {
+        utf8: '✓',
         instructor_id_eq: instuctor_id,
-        start_date_gteq: driving_date,
-        start_date_lteq: driving_date,
-        greed_material_id_eq: material,
+        start_date_gteq: driving_start_date.format("DD-MM-YYYY HH:mm")
+        start_date_lteq: driving_end_date.format("DD-MM-YYYY HH:mm")
       }
+    )
+  )
+  .done(
+    (data) -> (
+      AssignFindetDrivingToForm data
     )
   )
 
@@ -32,9 +44,13 @@ pageInit = ->
     inline: true
 
   $('#simple_driving_date').on 'change.datetimepicker', (e)->
-    console.log $(this).datetimepicker('date')
-
+    start_date = $(this).datetimepicker('viewDate').startOf('day')
+    end_date = $(this).datetimepicker('viewDate').endOf('day')
+    findDriving($("#simple_driving_instructor_id").val(), start_date, end_date)
+  
   $('#simple_driving_instructor_id').change (e)->
-    console.log $(this).val()
+    start_date = $('#simple_driving_date').datetimepicker('date').startOf('day')
+    end_date = $('#simple_driving_date').datetimepicker('date').endOf('day')
+    findDriving($(this).val(), start_date, end_date)
 
 $(document).on 'turbolinks:load', -> pageInit()
