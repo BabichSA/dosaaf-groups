@@ -5,13 +5,23 @@ class DrivingsController < ApplicationController
   # GET /drivings.json
   def index
     authorize! :read, Driving
-    
+
     if params[:q].nil?
       @q_params = {}
     else
       @q_params = params[:q]
     end
-    @q = Driving.ransack(params[:q])
+    @q = Driving.ransack(@q_params)
+    @drivings = @q.result
+  end
+
+  def schedule
+    if params[:q].nil?
+      @q_params = { "start_date_gteq": Date.today.beginning_of_day.strftime("%Y-%m-%d %H:%M") }
+    else
+      @q_params = params[:q]
+    end
+    @q = Driving.ransack(@q_params)
     @drivings = @q.result
   end
 

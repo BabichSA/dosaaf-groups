@@ -85,7 +85,12 @@ def seed_drivings
   Driving.create(
     instructor_id: Instructor.first.id,
     student_id: Student.first.id,
-    start_date: DateTime.parse("2018/10/09 8:00")
+    start_date: DateTime.parse("2018/10/09 5:00")
+  )
+  Driving.create(
+    instructor_id: Instructor.first.id,
+    student_id: Student.first.id,
+    start_date: DateTime.parse("2018/10/09 7:00")
   )
   Driving.create(
     instructor_id: Instructor.first.id,
@@ -95,18 +100,18 @@ def seed_drivings
   Driving.create(
     instructor_id: Instructor.first.id,
     student_id: Student.first.id,
-    start_date: DateTime.parse("2018/10/09 13:00")
-  )
-  Driving.create(
-    instructor_id: Instructor.first.id,
-    student_id: Student.first.id,
-    start_date: DateTime.parse("2018/10/09 15:00")
+    start_date: DateTime.parse("2018/10/09 12:00")
   )
 
   Driving.create(
     instructor_id: Instructor.last.id,
     student_id: Student.last.id,
-    start_date: DateTime.parse("2018/10/10 8:00")
+    start_date: DateTime.parse("2018/10/10 5:00")
+  )
+  Driving.create(
+    instructor_id: Instructor.last.id,
+    student_id: Student.last.id,
+    start_date: DateTime.parse("2018/10/10 7:00")
   )
   Driving.create(
     instructor_id: Instructor.last.id,
@@ -116,12 +121,7 @@ def seed_drivings
   Driving.create(
     instructor_id: Instructor.last.id,
     student_id: Student.last.id,
-    start_date: DateTime.parse("2018/10/10 13:00")
-  )
-  Driving.create(
-    instructor_id: Instructor.last.id,
-    student_id: Student.last.id,
-    start_date: DateTime.parse("2018/10/10 15:00")
+    start_date: DateTime.parse("2018/10/10 12:00")
   )
 end
 

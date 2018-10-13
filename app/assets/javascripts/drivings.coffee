@@ -2,39 +2,116 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-AssignFindetDrivingToForm = (drivings_json) ->
-  # console.log drivings_json
-  if drivings_json.length > 0
-    $.each(drivings_json, (i, item) ->
-      # console.log item
-    )
+saveChangedDriving = (hour, driving_id) ->
+  student_id = $("#driving_student_id_#{hour}").val()
+  unless student_id == "0"
+    $.ajax
+      type: "PATCH"
+      url: "/drivings/#{driving_id}.json"
+      data:
+        "driving":
+          "student_id": student_id
+      success: (response) ->
+        alert "Вождение успешно обновлено"
+      error: (response) ->
+        alert "ОШИБКА: Не удалось обновить вождение"
 
-findDriving = (instuctor_id, driving_start_date, driving_end_date) ->
-  # :id, :instructor_id, :student_id, :start_date, :created_at, :updated_at
+addNewDriving = (hour) ->
+  student_id = $("#driving_student_id_#{hour}").val()
+  instructor_id = $("#simple_driving_instructor_id").val()
+  driving_start_date = $('#simple_driving_date').datetimepicker('date').startOf('day').hours(hour).minutes(0).format("DD-MM-YYYY HH:mm")
+
+  unless student_id == "0" || instructor_id == "0"
+    $.ajax
+      type: "POST"
+      url: "/drivings.json"
+      data:
+        "driving":
+          "instructor_id": instructor_id
+          "student_id": student_id
+          "start_date": driving_start_date
+      success: (response) ->
+        alert "Вождение успешно добавлено"
+        console.log response
+        setFormMode(hour, 'edit', response.id)
+      error: (response) ->
+        alert "ОШИБКА: Не удалось добавить вождение"
+
+assignFindetDrivingToForm = (hour, student_id) ->
+  $("#driving_student_id_#{hour}").val(student_id)
+  $("#driving_student_id_#{hour}").selectpicker('refresh')
+
+clearDrivingForm = (hour) ->
+  $("#driving_student_id_#{hour}").val(0)
+  $("#driving_student_id_#{hour}").selectpicker('refresh')
+
+setFormMode = (hour, mode, driving_id) ->
+  switch mode
+    when 'new'
+      $("#driving_btn_save_#{hour} > i").attr('class', 'fas fa-plus')
+      $("#driving_btn_save_#{hour}").show()
+      $("#driving_student_id_#{hour}").removeAttr('disabled')
+      $("#driving_student_id_#{hour}").selectpicker('refresh')
+      $("#driving_btn_save_#{hour}").unbind('click')
+      $("#driving_btn_save_#{hour}").click (e) -> addNewDriving(hour)
+    when 'edit'
+      $("#driving_btn_save_#{hour} > i").attr('class', 'fas fa-check')
+      $("#driving_btn_save_#{hour}").show()
+      $("#driving_student_id_#{hour}").removeAttr('disabled')
+      $("#driving_student_id_#{hour}").selectpicker('refresh')
+      $("#driving_btn_save_#{hour}").unbind('click')
+      $("#driving_btn_save_#{hour}").click (e) -> saveChangedDriving(hour, driving_id)
+    when 'readonly'
+      $("#driving_btn_save_#{hour}").hide()
+      $("#driving_student_id_#{hour}").attr('disabled', 'disabled')
+      $("#driving_student_id_#{hour}").selectpicker('refresh')
+    else
+      $("#driving_btn_save_#{hour}").hide()
+      $("#driving_student_id_#{hour}").removeAttr('disabled')
+      $("#driving_student_id_#{hour}").selectpicker('refresh')
+
+findDrivings = (instuctor_id, driving_start_date) ->
   url = "/drivings.json"
-
-  # console.log $("#driving_student_id_8_00").val() console.log
-  $("#driving_student_id_8_00").val(81)
-  $("#driving_student_id_8_00").selectpicker('refresh')
   
-  $.getJSON(
-    url, (
-      tags: "id instructor_id student_id start_date"
-      tagmode: "any"
-      format: "json"
-      q: {
-        utf8: '✓',
-        instructor_id_eq: instuctor_id,
-        start_date_gteq: driving_start_date.format("DD-MM-YYYY HH:mm")
-        start_date_lteq: driving_end_date.format("DD-MM-YYYY HH:mm")
-      }
+  driving_hours = [8, 10, 13, 15]
+  if driving_start_date < moment()
+    is_closed = true
+  else
+    is_closed = false
+  
+  $.each driving_hours, (i, driving_hour) ->
+    driving_start = driving_start_date.hours(driving_hour).minutes(0).format("DD-MM-YYYY HH:mm")
+    driving_end = driving_start_date.hours(driving_hour + 1).minutes(59).format("DD-MM-YYYY HH:mm")
+
+    $.getJSON(
+      url, (
+        tags: "id instructor_id student_id start_date"
+        tagmode: "any"
+        format: "json"
+        q: {
+          utf8: '✓',
+          instructor_id_eq: instuctor_id,
+          start_date_gteq: driving_start
+          start_date_lteq: driving_end
+        }
+      )
     )
-  )
-  .done(
-    (data) -> (
-      AssignFindetDrivingToForm data
+    .done(
+      (data) -> (
+        if data.length > 0
+          assignFindetDrivingToForm(driving_hour, data[0].student_id)
+          if is_closed
+            setFormMode(driving_hour, 'readonly')
+          else
+            setFormMode(driving_hour, 'edit', data[0].id)
+        else
+          clearDrivingForm(driving_hour)
+          if is_closed
+            setFormMode(driving_hour, 'readonly')
+          else
+            setFormMode(driving_hour, 'new')
+      )
     )
-  )
 
 pageInit = ->
   $ -> $('#driving_start_date').datetimepicker
@@ -49,12 +126,10 @@ pageInit = ->
 
   $('#simple_driving_date').on 'change.datetimepicker', (e)->
     start_date = $(this).datetimepicker('viewDate').startOf('day')
-    end_date = $(this).datetimepicker('viewDate').endOf('day')
-    findDriving($("#simple_driving_instructor_id").val(), start_date, end_date)
+    findDrivings($("#simple_driving_instructor_id").val(), start_date)
   
   $('#simple_driving_instructor_id').change (e)->
     start_date = $('#simple_driving_date').datetimepicker('date').startOf('day')
-    end_date = $('#simple_driving_date').datetimepicker('date').endOf('day')
-    findDriving($(this).val(), start_date, end_date)
+    findDrivings($(this).val(), start_date)
 
 $(document).on 'turbolinks:load', -> pageInit()

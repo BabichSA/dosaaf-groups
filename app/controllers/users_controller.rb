@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, 'Пользователь создан' }
+        format.html { redirect_to @user, notice: 'Пользователь создан' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

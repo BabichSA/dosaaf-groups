@@ -11,27 +11,32 @@
           class: (
             controller.controller_name == 'group_apps' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
           ) if can? :read, GroupApp %>
-        <%= link_to("#{ icon 'fas', 'user-graduate' } Учащиеся".html_safe, 
-          students_path, 
-          class: (
-            controller.controller_name == 'students' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
-          ) if can? :read, Student %>
         <%= link_to("#{ icon 'fas', 'user-tie' } Инструкторы".html_safe, 
           instructors_path, 
           class: (
             controller.controller_name == 'instructors' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
           ) if can? :read, Instructor %>
+        <%= link_to("#{ icon 'fas', 'user-graduate' } Учащиеся".html_safe, 
+          students_path, 
+          class: (
+            controller.controller_name == 'students' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, Student %>
         <%= link_to("#{ icon 'fas', 'car' } Запись на вождение".html_safe, 
           simple_drivings_path,
           class: (
-            controller.controller_name == 'drivings' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
-          ) if can? :read, Driving %>
-        <%= link_to("#{ icon 'fas', 'users' } Управление пользователями".html_safe, 
+            controller.action_name == 'simple' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :manage, Driving %>
+        <%= link_to("#{ icon 'fas', 'list-ul' } Расписание".html_safe, 
+          schedule_drivings_path,
+          class: (
+            controller.action_name == 'schedule' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, Driving %>        
+        <%= link_to("#{ icon 'fas', 'users' } Пользователи".html_safe, 
           users_path, class: (
             controller.controller_name == 'users' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
           ) if can? :read, User %>
-        <%= link_to("#{ icon 'fas', 'sign-out-alt' } Выйти".html_safe, 
-          destroy_user_session_path, method: :delete, class: "nav-item nav-link") %>
+        <%= link_to("#{ icon 'fas', 'sign-out-alt' } Выйти (#{current_user.login})".html_safe, 
+          destroy_user_session_path, method: :delete, class: "nav-item nav-link nav-danger") %>
       </div>
     </div>
   </nav>

@@ -20,6 +20,8 @@ class Driving < ApplicationRecord
   belongs_to :student
   belongs_to :instructor
 
+  default_scope { order("instructor_id ASC, start_date ASC") }
+
   def student_full_name; student.nil? ? '' : student.full_name end
   def instructor_full_name; instructor.nil? ? '' : instructor.full_name end
 end

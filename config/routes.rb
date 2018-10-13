@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  resources :drivings do   
+  resources :drivings do
     collection do
       get 'simple'
+      get 'schedule'
     end
   end
 
   resources :instructors
   resources :students
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+
   resources :group_apps
   devise_for :users
 

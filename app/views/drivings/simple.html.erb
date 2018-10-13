@@ -20,13 +20,13 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="form-group select optional driving_student_id_8_00 form-group-valid">
-          <label class="form-control-label select optional" for="driving_student_id_8_00">08:00</label>
-          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
-          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
-          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
-          <select class="selectpicker" data-live-search="true" id="driving_student_id_8_00" data-width="auto">
-            <option selected value>Не выбран</option>
+        <div class="form-group select optional form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_8">08:00</label>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)" id="driving_btn_save_8" name="driving[save]" style="display: none;">
+            <i class="fas fa-check"></i>
+          </a>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_8" data-width="auto">
+            <option selected value="0" >Не выбран</option>
             <% @students.each do |student| %>
               <% student_hours_data = student.driving_tags(@groups) %>
               <%= content_tag( :option,
@@ -38,13 +38,13 @@
           </select>
         </div>
 
-        <div class="form-group select optional driving_student_id_10_00 form-group-valid">
-          <label class="form-control-label select optional" for="driving_student_id_10_00">10:00</label>
-          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
-          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
-          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
-          <select class="selectpicker" data-live-search="true" id="driving_student_id_10_00" data-width="auto">
-            <option selected value>Не выбран</option>
+        <div class="form-group select optional form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_10">10:00</label>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)" id="driving_btn_save_10" name="driving[save]" style="display: none;">
+            <i class="fas fa-check"></i>
+          </a>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_10" data-width="auto">
+            <option selected value="0" >Не выбран</option>
             <% @students.each do |student| %>
               <% student_hours_data = student.driving_tags(@groups) %>
               <%= content_tag( :option,
@@ -56,13 +56,13 @@
           </select>
         </div>
 
-        <div class="form-group select optional driving_student_id_13_00 form-group-valid">
-          <label class="form-control-label select optional" for="driving_student_id_13_00">13:00</label>
-          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
-          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
-          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
-          <select class="selectpicker" data-live-search="true" id="driving_student_id_13_00" data-width="auto">
-            <option selected value>Не выбран</option>
+        <div class="form-group select optional form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_13">13:00</label>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)" id="driving_btn_save_13" name="driving[save]" style="display: none;">
+            <i class="fas fa-check"></i>
+          </a>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_13" data-width="auto">
+            <option selected value="0" >Не выбран</option>
             <% @students.each do |student| %>
               <% student_hours_data = student.driving_tags(@groups) %>
               <%= content_tag( :option,
@@ -74,13 +74,13 @@
           </select>
         </div>
 
-        <div class="form-group select optional driving_student_id_15_00 form-group-valid">
-          <label class="form-control-label select optional" for="driving_student_id_15_00">15:00</label>
-          <a class="btn btn-success btn-sm" href="javascript:void(0)"><i class="fas fa-check"></i></a>
-          <a class="btn btn-warning btn-sm" href="javascript:void(0)"><i class="far fa-edit"></i></a>
-          <a class="btn btn-danger btn-sm" href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
-          <select class="selectpicker" data-live-search="true" id="driving_student_id_15_00" data-width="auto">
-            <option selected value>Не выбран</option>
+        <div class="form-group select optional form-group-valid">
+          <label class="form-control-label select optional" for="driving_student_id_15">15:00</label>
+          <a class="btn btn-success btn-sm" href="javascript:void(0)" id="driving_btn_save_15" name="driving[save]" style="display: none;">
+            <i class="fas fa-check"></i>
+          </a>
+          <select class="selectpicker" data-live-search="true" id="driving_student_id_15" data-width="auto">
+            <option selected value="0" >Не выбран</option>
             <% @students.each do |student| %>
               <% student_hours_data = student.driving_tags(@groups) %>
               <%= content_tag( :option,
@@ -94,4 +94,7 @@
       </div>
     </div>
   </div>
+
+  <%= link_to("Администрирование записей на вождение...",
+    drivings_path, target: :blank) if can? :manage, Driving %>
 </div>
