@@ -22,7 +22,7 @@
             controller.controller_name == 'instructors' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
           ) if can? :read, Instructor %>
         <%= link_to("#{ icon 'fas', 'car' } Запись на вождение".html_safe, 
-          drivings_path,
+          simple_drivings_path,
           class: (
             controller.controller_name == 'drivings' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
           ) if can? :read, Driving %>

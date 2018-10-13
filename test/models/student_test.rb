@@ -6,7 +6,7 @@
 #  address       :string
 #  driving_hours :integer          default(0), not null
 #  full_name     :string           not null
-#  grade         :integer          default(0)
+#  grade         :integer          default("not_set")
 #  phone         :string
 #  work          :string
 #  created_at    :datetime         not null

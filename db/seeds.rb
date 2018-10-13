@@ -6,6 +6,24 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+def seed_users
+  User.delete_all
+  User.create! [
+    {
+      email: 'admin@admin.com',
+      password: '123@123@123',
+      password_confirmation: '123@123@123',
+      username: 'admin',
+      role: 1
+    },
+    {
+      email: 'guest@guest.com',
+      password: '123@123@123',
+      password_confirmation: '123@123@123',
+      username: 'guest'
+    }
+  ]
+end
 
 def seed_groups
   GroupApp.delete_all
@@ -107,6 +125,7 @@ def seed_drivings
   )
 end
 
+# seed_users
 # seed_groups
 # seed_students
 # seed_instructors
