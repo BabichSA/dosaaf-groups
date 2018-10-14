@@ -5,11 +5,11 @@
     <thead>
       <tr>
         <th><%= sort_link @q, :full_name, model_class.human_attribute_name(:full_name) %></th>
+        <th><%= sort_link @q, :driving_hours, model_class.human_attribute_name(:driving_hours) %></th>
         <th><%= sort_link @q, :phone, model_class.human_attribute_name(:phone) %></th>
         <th><%= sort_link @q, :address, model_class.human_attribute_name(:address) %></th>
         <th><%= sort_link @q, :work, model_class.human_attribute_name(:work) %></th>
         <th><%= sort_link @q, :grade, model_class.human_attribute_name(:grade) %></th>
-        <th><%= sort_link @q, :driving_hours, model_class.human_attribute_name(:driving_hours) %></th>
         <% if can? :manage, Student %>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
         <% end %>
@@ -19,11 +19,11 @@
       <% @students.each do |student| %>
         <tr>
           <td><%= link_to student.full_name, student_path(student) %></td>
+          <td><%= student.fulldriving_hours %></td>
           <td><%= student.phone %></td>
           <td><%= student.address %></td>
           <td><%= student.work %></td>
           <td><%= student.grade_i18n %></td>
-          <td><%= student.driving_hours %></td>
           <% if can? :manage, Student %>
             <td>
               <%= link_to "#{ icon 'far', 'edit' }".html_safe,
