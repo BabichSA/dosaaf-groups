@@ -19,7 +19,7 @@
 
 class Student < ApplicationRecord
   has_many :drivings
-  
+
   default_scope { order(full_name: :asc) }
 
   enum grade: {
@@ -53,8 +53,8 @@ class Student < ApplicationRecord
   def driving_tags(groups = {})
     if groups.empty?
       groups = Student.driving_groups
-    end    
-  
+    end
+
     tags = full_name
     tag_class = ''
 
@@ -74,14 +74,15 @@ class Student < ApplicationRecord
   end
 
   def self.driving_groups
-    group_limit = self.count / 3
-    yellow_hours_starts_with = self.all.sort_by {|student| student.full_driving_hours }.reverse[group_limit * 2].full_driving_hours#.limit(2)
-    red_hours_starts_with = self.all.sort_by {|student| student.full_driving_hours }.reverse[group_limit].full_driving_hours#.limit(2)
-    
-    { green: 0, yellow: yellow_hours_starts_with, red: red_hours_starts_with }
-    # students.each do
-    # Student.all.limit(10)
-    # Student.all.order("")
+    if Student.all.count > 0
+      group_limit = self.count / 3
+      yellow_hours_starts_with = self.all.sort_by {|student| student.full_driving_hours }.reverse[group_limit * 2].full_driving_hours
+      red_hours_starts_with = self.all.sort_by {|student| student.full_driving_hours }.reverse[group_limit].full_driving_hours
+
+      { green: 0, yellow: yellow_hours_starts_with, red: red_hours_starts_with }
+    else
+      { green: 0, yellow: 0, red: 0 }
+    end
   end
 
   def self.full_names
