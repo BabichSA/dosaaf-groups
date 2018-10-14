@@ -16,12 +16,14 @@
     <% end %>
 
     <main role="main">
-      <%= yield %>
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %> text-center">
-          <%= value %>
-        </div>
-      <% end %>
+      <div class="move_footer">
+        <%= yield %>
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %> text-center">
+            <%= value %>
+          </div>
+        <% end %>
+      </div>
     </main>
 
     <% unless devise_controller? %>
