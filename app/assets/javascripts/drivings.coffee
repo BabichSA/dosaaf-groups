@@ -2,6 +2,20 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+removeDriving = (hour, driving_id) ->
+  student_id = $("#driving_student_id_#{hour}").val()
+  unless student_id == "0"
+    $.ajax
+      type: "DELETE"
+      url: "/drivings/#{driving_id}.json"
+      success: (response) ->
+        alert "Вождение отменено"
+        $("#driving_student_id_#{hour}").val(0)
+        $("#driving_student_id_#{hour}").selectpicker('refresh')
+        setFormMode(hour, 'new', driving_id)
+      error: (response) ->
+        alert "ОШИБКА: Не удалось отменить вождение"
+
 saveChangedDriving = (hour, driving_id) ->
   student_id = $("#driving_student_id_#{hour}").val()
   unless student_id == "0"
@@ -32,7 +46,6 @@ addNewDriving = (hour) ->
           "start_date": driving_start_date
       success: (response) ->
         alert "Вождение успешно добавлено"
-        console.log response
         setFormMode(hour, 'edit', response.id)
       error: (response) ->
         alert "ОШИБКА: Не удалось добавить вождение"
@@ -48,25 +61,28 @@ clearDrivingForm = (hour) ->
 setFormMode = (hour, mode, driving_id) ->
   switch mode
     when 'new'
-      $("#driving_btn_save_#{hour} > i").attr('class', 'fas fa-plus')
-      $("#driving_btn_save_#{hour}").show()
+      $("#driving_btn_del_#{hour}").hide()
       $("#driving_student_id_#{hour}").removeAttr('disabled')
       $("#driving_student_id_#{hour}").selectpicker('refresh')
-      $("#driving_btn_save_#{hour}").unbind('click')
-      $("#driving_btn_save_#{hour}").click (e) -> addNewDriving(hour)
+      
+      $("#driving_student_id_#{hour}").unbind('changed.bs.select')
+      $("#driving_student_id_#{hour}").on 'changed.bs.select', 
+        (e, clickedIndex, isSelected, previousValue) -> addNewDriving(hour)
     when 'edit'
-      $("#driving_btn_save_#{hour} > i").attr('class', 'fas fa-check')
-      $("#driving_btn_save_#{hour}").show()
+      $("#driving_btn_del_#{hour}").show()
       $("#driving_student_id_#{hour}").removeAttr('disabled')
       $("#driving_student_id_#{hour}").selectpicker('refresh')
-      $("#driving_btn_save_#{hour}").unbind('click')
-      $("#driving_btn_save_#{hour}").click (e) -> saveChangedDriving(hour, driving_id)
+      $("#driving_btn_del_#{hour}").unbind('click')
+      $("#driving_btn_del_#{hour}").click (e) -> removeDriving(hour, driving_id)
+      $("#driving_student_id_#{hour}").unbind('changed.bs.select')
+      $("#driving_student_id_#{hour}").on 'changed.bs.select',
+        (e, clickedIndex, isSelected, previousValue) -> saveChangedDriving(hour, driving_id)
     when 'readonly'
-      $("#driving_btn_save_#{hour}").hide()
+      $("#driving_btn_del_#{hour}").hide()
       $("#driving_student_id_#{hour}").attr('disabled', 'disabled')
       $("#driving_student_id_#{hour}").selectpicker('refresh')
     else
-      $("#driving_btn_save_#{hour}").hide()
+      $("#driving_btn_del_#{hour}").hide()
       $("#driving_student_id_#{hour}").removeAttr('disabled')
       $("#driving_student_id_#{hour}").selectpicker('refresh')
 
@@ -100,13 +116,13 @@ findDrivings = (instuctor_id, driving_start_date) ->
       (data) -> (
         if data.length > 0
           assignFindetDrivingToForm(driving_hour, data[0].student_id)
-          if is_closed
+          if is_closed || instuctor_id == "0"
             setFormMode(driving_hour, 'readonly')
           else
             setFormMode(driving_hour, 'edit', data[0].id)
         else
           clearDrivingForm(driving_hour)
-          if is_closed
+          if is_closed || instuctor_id == "0"
             setFormMode(driving_hour, 'readonly')
           else
             setFormMode(driving_hour, 'new')

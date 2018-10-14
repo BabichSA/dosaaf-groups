@@ -129,4 +129,4 @@ end
 # seed_groups
 # seed_students
 # seed_instructors
-# seed_drivings
+seed_drivings
