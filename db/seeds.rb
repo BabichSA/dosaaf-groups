@@ -127,9 +127,9 @@ end
 
 # seed_users
 # seed_groups
-seed_students
-seed_instructors
-seed_drivings
+# seed_students
+# seed_instructors
+# seed_drivings
 
 # Student.delete_all
 # Instructor.delete_all
