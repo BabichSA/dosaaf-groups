@@ -33,7 +33,7 @@ class Student < ApplicationRecord
   }
 
   def full_driving_hours
-    driving_hours + drivings.count * 2
+    driving_hours + drivings.count
   end
 
   def driving_group(groups = {})
