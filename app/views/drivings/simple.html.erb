@@ -96,6 +96,9 @@
     </div>
   </div>
 
-  <%= link_to("Администрирование записей на вождение...",
-    drivings_path, target: :blank) if can? :manage, Driving %>
+  <p><%= link_to("#{ icon 'fas', 'list-ul' } Расписание".html_safe,
+    schedule_drivings_path) if can? :manage, Driving %></p>
+
+  <p><%= link_to("Администрирование записей на вождение...",
+    drivings_path) if can? :manage, Driving %></p>
 </div>

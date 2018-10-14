@@ -22,4 +22,7 @@
       <% end %>
     </tbody>
   </table>
+
+  <p><%= link_to("#{ icon 'fas', 'car' } Запись на вождение".html_safe,
+    simple_drivings_path) if can? :manage, Driving %></p>
 </div>
