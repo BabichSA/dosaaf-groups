@@ -5,7 +5,16 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     authorize! :read, Student
-    @students = Student.all
+
+    if params[:q].nil?
+      @q_params = {}
+    else
+      @q_params = params[:q]
+    end
+    @q = Student.ransack(@q_params)
+    @students = @q.result
+
+    # @students = Student.all
   end
 
   # GET /students/1

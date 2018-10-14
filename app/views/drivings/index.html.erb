@@ -4,10 +4,10 @@
   <table class="table table-striped table-responsive">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:id) %></th>
-        <th><%= model_class.human_attribute_name(:instructor_id) %></th>
-        <th><%= model_class.human_attribute_name(:student_id) %></th>
-        <th><%= model_class.human_attribute_name(:start_date) %></th>
+        <th><%= sort_link @q, :id, model_class.human_attribute_name(:id) %></th>
+        <th><%= sort_link @q, :instructor_id, model_class.human_attribute_name(:instructor_id) %></th>
+        <th><%= sort_link @q, :student_id, model_class.human_attribute_name(:student_id) %></th>
+        <th><%= sort_link @q, :start_date, model_class.human_attribute_name(:start_date) %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
     </thead>

@@ -5,7 +5,16 @@ class InstructorsController < ApplicationController
   # GET /instructors.json
   def index
     authorize! :read, Instructor
-    @instructors = Instructor.all
+
+    if params[:q].nil?
+      @q_params = {}
+    else
+      @q_params = params[:q]
+    end
+    @q = Instructor.ransack(@q_params)
+    @instructors = @q.result
+
+    # @instructors = Instructor.all
   end
 
   # GET /instructors/1
