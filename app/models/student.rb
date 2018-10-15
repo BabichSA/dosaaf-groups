@@ -18,7 +18,7 @@
 #
 
 class Student < ApplicationRecord
-  has_many :drivings
+  has_many :drivings, dependent: :delete_all
 
   default_scope { order(full_name: :asc) }
 
