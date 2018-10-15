@@ -8,8 +8,11 @@
         <div id="simple_driving_date"></div>
       </div>
 
-      <div class="col-md-3">
-        <div class="form-group select optional simple_driving_instructor_id form-group-valid">
+      <div class="col-md-1">
+      </div>
+
+      <div class="col-md-8">
+        <div class="move_text_down">
           <label class="form-control-label select optional" for="simple_driving_instructor_id"><b>Инструктор</b></label>
           <select class="selectpicker" name="simple_driving[instructor_id]" id="simple_driving_instructor_id" data-width="auto">
             <option selected value="0">Не выбран</option>
@@ -18,9 +21,6 @@
             <% end %>
           </select>
         </div>
-      </div>
-
-      <div class="col-md-6">
         <div class="form_simple_driving"> 
           <label class="form-control-label select optional" for="driving_student_id_8"><b>08:00</b></label>
           <a class="btn btn-danger btn-sm" href="javascript:void(0)" id="driving_btn_del_8" name="driving[del]" style="display: none;">
