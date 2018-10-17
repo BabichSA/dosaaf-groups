@@ -15,11 +15,11 @@
       <% @drivings.each do |driving| %>
         <tr>
           <td><%= link_to driving.id, driving_path(driving) %></td>
-          <td><%= link_to driving.student_full_name, 
-            student_path(driving.student_id), target: "_blank" %>
-          </td>
           <td><%= link_to driving.instructor_full_name, 
             instructor_path(driving.instructor_id), target: "_blank" %>
+          </td>
+          <td><%= link_to driving.student_full_name, 
+            student_path(driving.student_id), target: "_blank" %>
           </td>
           <td><%= driving.start_date %></td>
           <td>

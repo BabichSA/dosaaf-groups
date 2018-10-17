@@ -12,7 +12,7 @@ class DrivingsController < ApplicationController
       @q_params = params[:q]
     end
     @q = Driving.ransack(@q_params)
-    @drivings = @q.result
+    @drivings = @q.result.order("start_date asc")
   end
 
   def schedule
@@ -23,6 +23,8 @@ class DrivingsController < ApplicationController
     end
     @q = Driving.ransack(@q_params)
     @drivings = @q.result
+    # @last_driving_date = Driving.all.order("start_date asc").last.start_date.to_date
+    @cards = Driving.cards
   end
 
   def simple

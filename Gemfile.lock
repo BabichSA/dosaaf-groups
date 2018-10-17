@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/radar/by_star
+  revision: 422c06ec1ea8ce633aca014a4403fbac92630057
+  specs:
+    by_star (3.0.0)
+      activesupport (> 3)
+
+GIT
   remote: https://github.com/zpaulovics/datetimepicker-rails.git
   revision: 36d21cec5da7f5b214925804f60e63c61c747023
   branch: master
@@ -333,6 +340,7 @@ DEPENDENCIES
   bootstrap (~> 4.1.3)
   bootstrap4-datetime-picker-rails
   bootstrap4-select-rails
+  by_star!
   byebug
   cancancan
   capybara (>= 2.15)

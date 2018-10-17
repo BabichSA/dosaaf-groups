@@ -50,6 +50,8 @@ gem "datetimepicker-rails", github: 'zpaulovics/datetimepicker-rails', branch: '
 gem "bootstrap4-select-rails"
 gem "simple_form"
 gem "enum_help"
+#gem "groupdate"
+gem "by_star", git: "git://github.com/radar/by_star"
 gem "ransack"
 
 gem "trix-rails", require: 'trix'
