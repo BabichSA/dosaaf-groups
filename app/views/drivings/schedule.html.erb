@@ -5,9 +5,9 @@
   <div class="card-group">
     <% @cards.each do |card| %>
       <% if card[:instructor] != instructor %>
-      </div>
-      <div class="card-group">
-    <% end %>
+        </div>
+        <div class="card-group">
+      <% end %>
       <% instructor = card[:instructor] %>
       <div class="card" style="max-width: 20rem; min-width: 20rem;">
         <div class="card-body">
@@ -21,10 +21,8 @@
           <p class="card-text"><b>4. 15.00 - 17.00</b> <%= card[:data][:student_15] %></p>
         </div>
       </div>
-      
-  <% end %>
+    <% end %>
   </div>
-
   <p><%= link_to("#{ icon 'fas', 'car' } Запись на вождение".html_safe,
     simple_drivings_path) if can? :manage, Driving %></p>
 </div>
