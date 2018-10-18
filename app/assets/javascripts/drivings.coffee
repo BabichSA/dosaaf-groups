@@ -116,13 +116,13 @@ findDrivings = (instuctor_id, driving_start_date) ->
       (data) -> (
         if data.length > 0
           assignFindetDrivingToForm(driving_hour, data[0].student_id)
-          if is_closed || instuctor_id == "0"
+          if instuctor_id == "0"
             setFormMode(driving_hour, 'readonly')
           else
             setFormMode(driving_hour, 'edit', data[0].id)
         else
           clearDrivingForm(driving_hour)
-          if is_closed || instuctor_id == "0"
+          if instuctor_id == "0"
             setFormMode(driving_hour, 'readonly')
           else
             setFormMode(driving_hour, 'new')
