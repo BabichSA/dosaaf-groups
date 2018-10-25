@@ -35,7 +35,7 @@ class Driving < ApplicationRecord
       start_date = date.to_date
     end
     
-    last_date = Driving.all.order("start_date asc").last.start_date.to_date
+    last_date = Driving.all.order("start_date asc").last.start_date.to_date + 1.day
     cards_list = []
     scope = Driving.between_times(start_date + 3.hours, last_date + 3.hours)
     
