@@ -11,7 +11,7 @@
           class: (
             controller.controller_name == 'group_apps' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
           ) if can? :read, GroupApp %>
-        <%= link_to("#{ icon 'fas', 'home' } Домашние задания".html_safe, 
+        <%= link_to("#{ icon 'fas', 'home' } Задания".html_safe, 
           simple_homeworks_path, 
           class: (
             controller.controller_name == 'homeworks' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
