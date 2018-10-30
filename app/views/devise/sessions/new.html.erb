@@ -32,7 +32,7 @@
   <div class="container">
     <div class="card-group">
       <% @homeworks.each do |homework| %>
-        <div class="card" style="min-width: 35rem;">
+        <div class="card" style="min-width: 20rem;">
           <div class="card-header"><%= homework.title %> (назначено на <%= homework.assigned_at %>)</div>
           <div class="card-body">
             <p class="card-text"><%= homework.body.html_safe %></p>

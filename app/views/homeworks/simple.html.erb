@@ -2,7 +2,7 @@
 <div class="container mt-3">
   <div class="card-group">
     <% @homeworks.each do |homework| %>
-      <div class="card" style="min-width: 35rem;">
+      <div class="card" style="min-width: 20rem;">
         <div class="card-header">
           <%= homework.title %> 
           <% if can? :manage, Homework %>
