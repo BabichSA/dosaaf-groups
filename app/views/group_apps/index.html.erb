@@ -71,7 +71,11 @@
     </p>
     <p>
       <%= link_to("#{ icon 'fas', 'list-ul' } Расписание".html_safe,
-          schedule_drivings_path) if can? :manage, Driving %>
+        schedule_drivings_path) if can? :manage, Driving %>
+    </p>
+    <p>
+      <%= link_to("#{ icon 'fas', 'home' } Домашнее задание".html_safe,
+        simple_homeworks_path) if can? :manage, Homework %>
     </p>
   <% end %>
 </div>

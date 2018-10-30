@@ -1,0 +1,27 @@
+<%- model_class = Homework -%>
+<div class="container mt-3">
+  <div class="card-group">
+    <% @homeworks.each do |homework| %>
+      <div class="card" style="min-width: 35rem;">
+        <div class="card-header">
+          <%= homework.title %> 
+          <% if can? :manage, Homework %>
+            <% if homework.available %>
+              <b class="text-success">отображается учащимся</b>
+            <% else %>
+              <b class="text-danger">не отображается учащимся</b>
+            <% end %>
+          <% end %>
+          (назначено на <%= homework.assigned_at %>)
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= homework.body.html_safe %></p>
+        </div>
+      <%= (link_to "#{ icon 'far', 'edit' } Редактировать".html_safe,
+        edit_homework_path(homework), :class => 'btn btn-warning btn-sm') if can? :manage, Homework %>
+      </div>
+    <% end %>
+  </div>
+  <p class="mt-3"><%= link_to("Администрирование домашних заданий...",
+    homeworks_path) if can? :manage, Homework %></p>
+</div>

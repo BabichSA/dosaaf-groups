@@ -6,6 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     @cards = Driving.cards
+    @homeworks = Homework.all.where(available: true)
     super
   end
 

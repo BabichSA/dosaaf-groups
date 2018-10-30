@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_09_091249) do
+ActiveRecord::Schema.define(version: 2018_10_30_063932) do
 
   create_table "drivings", force: :cascade do |t|
     t.integer "instructor_id", null: false
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2018_10_09_091249) do
     t.string "fa_icon"
     t.index ["available"], name: "index_group_apps_on_available"
     t.index ["name"], name: "index_group_apps_on_name", unique: true
+  end
+
+  create_table "homeworks", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.date "assigned_at"
+    t.boolean "available", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "instructors", force: :cascade do |t|

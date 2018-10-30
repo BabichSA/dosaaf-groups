@@ -6,11 +6,16 @@
     <%= link_to("ДОСААФ", '/',   class: "navbar-brand") %>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <div class="navbar-nav float-left text-left pr-3 ">
-        <%= link_to("#{ icon 'fas', 'mobile-alt' } Группы в мессенжерах".html_safe, 
+        <%= link_to("#{ icon 'fas', 'mobile-alt' } Группы".html_safe, 
           group_apps_path, 
           class: (
             controller.controller_name == 'group_apps' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
           ) if can? :read, GroupApp %>
+        <%= link_to("#{ icon 'fas', 'home' } Домашние задания".html_safe, 
+          simple_homeworks_path, 
+          class: (
+            controller.controller_name == 'homeworks' ? "nav-item nav-link" : "nav-item nav-link nav-nonactive") 
+          ) if can? :read, Homework %>
         <%= link_to("#{ icon 'fas', 'user-tie' } Инструкторы".html_safe, 
           instructors_path, 
           class: (

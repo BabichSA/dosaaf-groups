@@ -6,6 +6,7 @@ ru:
       student: "Учащийся"
       instructor: "Инструктор"
       driving: "Вождение"
+      homework: "Задание"
     attributes:
       group_app:
         name: "Название приложения"
@@ -55,8 +56,13 @@ ru:
         instructor_id: "Инструктор"
         student_id: "Учащийся"
         start_date: "Дата начала вождения"
-        created_at: "Создан в"
-        updated_at: "Обновлен в"
+        created_at: "Создано в"
+        updated_at: "Обновлено в"
+      homework:
+        title: "Заголовок"
+        body: "Текст задания"
+        assigned_at: "Назначено на"
+        available: "Активно"
   enums:
     user:
       role:

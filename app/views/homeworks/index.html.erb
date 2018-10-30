@@ -1,0 +1,43 @@
+<%- model_class = Homework -%>
+<div class="container">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+
+  <table class="table table-striped table-responsive">
+    <thead>
+      <tr>
+        <th><%= sort_link @q, :id, model_class.human_attribute_name(:id) %></th>
+        <th><%= sort_link @q, :title, model_class.human_attribute_name(:title) %></th>
+        <th><%= sort_link @q, :body, model_class.human_attribute_name(:body) %></th>
+        <th><%= sort_link @q, :assigned_at, model_class.human_attribute_name(:assigned_at) %></th>
+        <th><%= sort_link @q, :available, model_class.human_attribute_name(:available) %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @homeworks.each do |homework| %>
+        <tr>
+          <td><%= homework.id %></td>
+          <td><%= homework.title %></td>
+          <td><%= homework.body.html_safe %></td>
+          <td><%= homework.assigned_at %></td>
+          <td><%= homework.available %></td>
+
+          <td>
+            <%= link_to "#{ icon 'far', 'edit' }".html_safe,
+                        edit_homework_path(homework), :class => 'btn btn-warning btn-sm' %>
+            <%= link_to "#{ icon 'far', 'trash-alt' }".html_safe,
+                        homework_path(homework),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_homework_path,
+              :class => 'btn btn-primary' %>
+</div>

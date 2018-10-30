@@ -1,0 +1,15 @@
+
+<%= simple_form_for(@homework) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.trix_editor :body %>
+    <%= f.input :assigned_at, as: :tempus_dominus %>
+    <%= f.input :available %>
+  </div>
+
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

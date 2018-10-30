@@ -21,7 +21,7 @@
 
 //= require moment
 //= require moment/ru.js
-///////= require tempusdominus-bootstrap-4.js
+
 //= require tempusdominus-bootstrap-4.min.js
 //= require bootstrap-select
 //= require bootstrap/alert

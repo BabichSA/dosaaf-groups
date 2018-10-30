@@ -33,12 +33,14 @@ class Ability
 
     can :read, GroupApp
     can :read, Driving
+    can :read, Homework
 
     if user.headman?
       can :read, GroupApp
       can :read, Student
       can :read, Instructor
       can :manage, Driving
+      can :manage, Homework
     end
 
     if user.admin?
@@ -47,6 +49,7 @@ class Ability
       can :manage, Instructor
       can :manage, Driving
       can :manage, User
+      can :manage, Homework
       can :change_password, User
       can :update_password, User
     end

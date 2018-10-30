@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :homeworks do
+    collection do
+      get 'simple'
+    end
+  end
+
   resources :drivings do
     collection do
       get 'simple'
