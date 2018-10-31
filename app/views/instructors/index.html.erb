@@ -7,6 +7,9 @@
       <tr>
         <th><%= sort_link @q, :full_name, model_class.human_attribute_name(:full_name) %></th>
         <th><%= sort_link @q, :phone, model_class.human_attribute_name(:phone) %></th>
+        <th><%= sort_link @q, :car, model_class.human_attribute_name(:car) %></th>
+        <th><%= sort_link @q, :car_number, model_class.human_attribute_name(:car_number) %></th>
+
         <% if can? :manage, Instructor %>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
         <% end %>
@@ -17,6 +20,8 @@
         <tr>
           <td><%= link_to instructor.full_name, instructor_path(instructor) %></td>
           <td><%= instructor.phone %></td>
+          <td><%= instructor.car %></td>
+          <td><%= instructor.car_number %></td>
           <td>
             <% if can? :manage, Instructor %>
               <%= link_to "#{ icon 'far', 'edit' }".html_safe, 

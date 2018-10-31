@@ -27,6 +27,8 @@ class Driving < ApplicationRecord
 
   def student_full_name; student.nil? ? '' : student.full_name end
   def instructor_full_name; instructor.nil? ? '' : instructor.full_name end
+  def instructor_car; instructor.nil? ? '' : instructor.car end
+  def instructor_car_number; instructor.nil? ? '' : instructor.car_number end
 
   def self.cards(date=nil, instructor_id=nil)
     if date.nil?
@@ -59,8 +61,9 @@ class Driving < ApplicationRecord
             data: { 
               day_of_week: I18n.l(first.start_date, format: '%A'),
               start_date: I18n.l(first.start_date, format: '«%d» %B %Yг.'),
-              auto: 'Рено',
-              student_8: '_________________',
+              car: first.instructor_car,
+              car_number: first.instructor_car_number,
+              student_8:  '_________________',
               student_10: '_________________',
               student_13: '_________________',
               student_15: '_________________'

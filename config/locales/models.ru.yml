@@ -50,6 +50,8 @@ ru:
       instructor:
         full_name: "ФИО"
         phone: "Телефон"
+        car: "Авто"
+        car_number: "Номер авто"
         created_at: "Создан в"
         updated_at: "Обновлен в"
       driving:

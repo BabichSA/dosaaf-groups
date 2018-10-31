@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_063932) do
+ActiveRecord::Schema.define(version: 2018_10_31_082613) do
 
   create_table "drivings", force: :cascade do |t|
     t.integer "instructor_id", null: false
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2018_10_30_063932) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "car"
+    t.string "car_number"
     t.index ["full_name"], name: "index_instructors_on_full_name"
   end
 
