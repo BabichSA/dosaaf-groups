@@ -2,7 +2,7 @@
 #
 # Table name: group_apps
 #
-#  id         :integer          not null, primary key
+#  id         :bigint(8)        not null, primary key
 #  available  :boolean          default(TRUE), not null
 #  body       :text
 #  fa_icon    :string

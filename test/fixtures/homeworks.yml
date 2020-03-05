@@ -2,7 +2,7 @@
 #
 # Table name: homeworks
 #
-#  id          :integer          not null, primary key
+#  id          :bigint(8)        not null, primary key
 #  assigned_at :date
 #  available   :boolean          default(TRUE), not null
 #  body        :text

@@ -2,7 +2,7 @@
 #
 # Table name: instructors
 #
-#  id         :integer          not null, primary key
+#  id         :bigint(8)        not null, primary key
 #  car        :string
 #  car_number :string
 #  full_name  :string           not null

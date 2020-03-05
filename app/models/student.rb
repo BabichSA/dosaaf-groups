@@ -2,7 +2,7 @@
 #
 # Table name: students
 #
-#  id            :integer          not null, primary key
+#  id            :bigint(8)        not null, primary key
 #  address       :string
 #  driving_hours :integer          default(0), not null
 #  full_name     :string           not null
